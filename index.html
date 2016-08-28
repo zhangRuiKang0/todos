@@ -1,0 +1,59 @@
+<!doctype html>
+<html lang="en" ng-app="todo">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=414px">
+    <title>todos</title>
+    <link rel="stylesheet" href="css/index.css">
+    <script src="js/jquery.js"></script>
+    <!--<script src="js/index.js"></script>-->
+    <script src="angularjs/angular.js"></script>
+    <script src="angularjs/angular-animate.js"></script>
+    <script src="js/main.js"></script>
+</head>
+<body ng-controller="mainCtrl">
+<!--<input type="text" ng-model="h">
+<p>{{h}}</p-->
+<!--<h2 ng-click="huanbiaoti()">{{title}}</h2>
+<ul>
+    <li ng-repeat="v in musics">
+        <span>{{v.name}}</span>
+        <span>{{v.zuozhe}}</span>
+        <span ng-click="delete($index)">x</span>
+    </li>
+</ul>-->
+
+
+
+<div class="todobox">
+    <h1 ng-bind="title"></h1>
+    <div class="card">
+        <div class="header">
+            <input type="text" ng-keyup="add($event);save()" placeholder="What need to be done?" ng-model="name">
+        </div>
+        <ul class="todos" ng-init="tiaojian=''">
+            <li ng-dblclick="aa=true;focus($event)" ng-class="{bianji:aa,finish:v.isDone}" ng-init="aa=false" class="todo" ng-repeat="v in todos | filter:{isDone:tiaojian} track by v.id">
+                <div class="check" ng-click="v.isDone=!v.isDone;save()"></div>
+                <p>{{v.name}}</p>
+                <input ng-blur="aa=false" type="text" ng-model="v.name" ng-change="save()">
+                <div class="delete" ng-click="delete(v.id);save()"></div>
+            </li>
+          <!--  <li ng-dblclick="addClass($event)" class="todo" ng-repeat="v in todos">
+                <div class="check"></div>
+                <p>{{v.name}}</p>
+                <input type="text" ng-model="v.name">
+                <div class="delete"></div>
+            </li>-->
+
+        </ul>
+        <div class="footer">
+            <span class="left" ng-bind="(todos | filter:{isDone:tiaojian}).length"></span>
+            <span ng-class="{red:(tiaojian==='')}" ng-click="tiaojian='';setcount('quanbu')">All</span>
+            <span ng-class="{red:(tiaojian===true)}" ng-click="tiaojian=true;setcount('wancheng')">Completed</span>
+            <span ng-class="{red:(tiaojian===false)}" ng-click="tiaojian=false;setcount('weiwancheng')">Active</span>
+            <span class="right" ng-click="clear();save()">Clear</span>
+        </div>
+    </div>
+</div>
+</body>
+</html>
